@@ -90,7 +90,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'es-co'
+LANGUAGE_CODE = 'es-co' #en-us
 
 TIME_ZONE = 'America/Bogota'
 

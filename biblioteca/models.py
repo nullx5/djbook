@@ -4,8 +4,12 @@ from django.db import models
 
 class Autor(models.Model):
     nombre = models.CharField(max_length=30)
-    apelidos = models.CharField(max_length=40)
-    email = models.EmailField()                    #EmailField
+    apellidos = models.CharField(max_length=40)
+    email = models.EmailField(blank=True, verbose_name="e-mail")                    #EmailField
+
+    class Meta:
+        ordering = ["nombre"]
+        verbose_name_plural = "Autores"
 
     def __str__(self):
         #return "%s - %s" % (self.nombre, self.apellidos)
@@ -23,6 +27,7 @@ class Editor(models.Model):
 
     class Meta:
         ordering = ["nombre"]
+        verbose_name_plural = "Editores"
 
     def __str__(self):
         return self.nombre
@@ -31,8 +36,11 @@ class Libro(models.Model):
     titulo = models.CharField(max_length=100)
     autores = models.ManyToManyField(Autor)           #ManyToManyField
     editor = models.ForeignKey(Editor)                #ForeignKey
-    fecha_publicacion = models.DateField()            #DateField
-    portada = models.ImageField(upload_to="portadas") #ImageField requiere pillow
+    fecha_publicacion = models.DateField(blank=True, null=True)            #DateField
+    portada = models.ImageField(upload_to="portadas", blank=True) #ImageField requiere pillow
+
+    class Meta:
+        ordering = ["titulo"]
 
     def __str__(self):
         return self.titulo
