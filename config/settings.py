@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'biblioteca',
+    'contactos',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -108,3 +109,12 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT =  os.path.join(BASE_DIR, "media/")           #filesystem
 MEDIA_URL = "/uploaded/"                                 #path web que sirve los archivos
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+"""
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "your_account@gmail.com"
+EMAIL_HOST_PASSWORD = "your account’s password"
+"""
