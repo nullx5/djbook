@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
+from contactos.forms import FormularioContactos
 
 # Create your views here.
 def contactosmanual(request):
@@ -29,6 +30,23 @@ def contactosmanual(request):
         'mensaje': request.POST.get('mensaje', ''),
         'email': request.POST.get('email', ''),
      })
+
+def contactos(request):
+    if request.method == "POST":
+        form = FormularioContactos(request.POST)
+        if form.is_valid():
+            data_raw = form.cleaned_data
+            send_mail(
+                data_raw["asunto"],
+                data_raw["mensaje"],
+                data_raw.get("email", "noreply@example.com"),
+                ["siteowner@example.com"]
+            )
+            return HttpResponseRedirect("/contacto/gracias/")
+
+    else:
+        form = FormularioContactos(initial={"asunto":"!Adoro este Sitio¡"}) #Mejor usar argumento initial en forms.py 
+    return render(request, "formulario-contactos.html", {"form": form})
 
 def envio_exitoso(request):
     return render(request, "envio-exitoso.html")

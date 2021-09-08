@@ -95,9 +95,9 @@ LANGUAGE_CODE = 'es-co' #en-us
 
 TIME_ZONE = 'America/Bogota'
 
-USE_I18N = True
+USE_I18N = True #Internacionalización Django’s translation system
 
-USE_L10N = True
+USE_L10N = True #Localización Django will display numbers and dates with format of current locale.
 
 USE_TZ = True
 

@@ -17,7 +17,8 @@
         </ul>         
     {% endif %}
     
-    <form action="/contactosmanual/" method="post">{% csrf_token %}
+    <form action="/contactosmanual/" method="post">
+        {% csrf_token %}
         <p>Asunto: <input type="text" name="asunto" value="{{ asunto }}"></p>
         <p>E­mail (opcional): <input type="email" name="email" value="{{ email }}"></p>
         <p>Mensaje: <textarea name="mensaje" rows="10" cols="50">{{mensaje}}</textarea></p>  

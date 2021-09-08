@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Contacto</title>
+    <style type="text/css">
+        ul.errorlist {
+            margin: 0;
+            padding: 0;
+        }
+        .errorlist li {
+            background-color: red;
+            color: white;
+            display: block;
+            /* font-size: 10px; */
+            margin: 0 0 3px;
+            padding: 4px 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contactanos</h1>
+    {% if form.errors%}
+        <p style="color:red;">
+            Corrige los siguientes errores : 
+        </p>
+    {% endif %}
+
+    <!-- <form action="/contactos/" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Enviar  ">
+    </form> -->
+
+    <form action="/contactos/" method="post">
+        {% csrf_token %}
+        <div class="field">
+            {{form.asunto.errors}}
+            <label for="id_asunto">Asunto:</label>
+            {{form.asunto}}
+        </div> <br>
+        <div class="field">
+            {{form.email.errors}}
+            <label for="id_email">Email:</label>
+            {{form.email}}
+        </div> <br>
+        <div class="field{% if form.mensaje.errors%} errors {% endif %}">
+            {% if form.mensaje.errors%}
+                <ul class="errorlist">
+                    {% for error in form.mensaje.errors%}
+                        <li>{{error}}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <label for="id_mensaje">Mensaje:</label>
+            {{form.mensaje}}
+        </div> <br>
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
